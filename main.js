@@ -15,10 +15,11 @@ function draw()
 
 function renderCard(card)
 {
+	// document.getElementById("card").setAttribute('style','text-align:center;');
 	document.getElementById("card").innerHTML = 
-			`<b>Easy</b></br></hr></br>${card.easy}</br></hr></br>` +
-			`<b>Medium</b></br></hr></br>${card.medium}</br></hr></br>` +
-			`<b>Hard</b></br></hr></br>${card.hard}</br></hr></br>`;
+			`<hr><b style="color:blue">Easy</b></br><hr>${card.easy}</br><hr>` +
+			`<b style="color:red">Medium</b></br><hr>${card.medium}</br><hr>` +
+			`<b style="color:black">Hard</b></br><hr>${card.hard}</br></br>`;
 }
 
 const cards = [
