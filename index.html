@@ -1,14 +1,21 @@
 <html>
 <head>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="main.js"></script>
 </head>
 
 <body>
-    <div class="deck">
-        <h1>Concept cards</h1>
-
+    <div id="title">Concept Cards</div>
+    <div id="drawButton">
         <a href="javascript:void(0)" class="btn" onclick="draw()">Draw a new card</a>
-        <div id="card"></div>
+    </div>
+    <div id="cardArea">
+        <div id="card" style="text-align:center; font-family:Montserrat,Arial;" >
+            <p style="color:blue"><b>Easy</b></p>
+            <p style="color:red"><b>Medium</b></p>
+            <p style="color:black"><b>Hard</b></p>
+        </div>
+        <div style="clear: both;"></div>
     </div>
 </body>
 </html>
