@@ -2,7 +2,6 @@ var alreadyDrawn = [];
 
 function draw()
 {
-	console.log(`alreadyDrawn size ${alreadyDrawn.length}`);
 	if (alreadyDrawn.length == cards.length) {
 		alreadyDrawn = [];
 	}
@@ -10,14 +9,12 @@ function draw()
 	while (alreadyDrawn.includes(random)) {
 		random = Math.floor(Math.random() * cards.length);
 	}
-	console.log(`got random ${random}`);
 	renderCard(cards[random]);
 	alreadyDrawn.push(random);
 }
 
 function renderCard(card)
 {
-	console.log(`card value = ${card}`);
 	document.getElementById("card").innerHTML = 
 			`<b>Easy</b></br></hr></br>${card.easy}</br></hr></br>` +
 			`<b>Medium</b></br></hr></br>${card.medium}</br></hr></br>` +
