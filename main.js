@@ -1,27 +1,3 @@
-var alreadyDrawn = [];
-
-function draw()
-{
-	if (alreadyDrawn.length == cards.length) {
-		alreadyDrawn = [];
-	}
-	var random = Math.floor(Math.random() * cards.length);
-	while (alreadyDrawn.includes(random)) {
-		random = Math.floor(Math.random() * cards.length);
-	}
-	renderCard(cards[random]);
-	alreadyDrawn.push(random);
-}
-
-function renderCard(card)
-{
-	// document.getElementById("card").setAttribute('style','text-align:center;');
-	document.getElementById("card").innerHTML = 
-			`<hr><b style="color:blue">Easy</b></br><hr>${card.easy}</br><hr>` +
-			`<b style="color:red">Medium</b></br><hr>${card.medium}</br><hr>` +
-			`<b style="color:black">Hard</b></br><hr>${card.hard}</br></br>`;
-}
-
 const cards = [
 	// row 1
 	{
@@ -373,3 +349,240 @@ const cards = [
 		hard: ["Black eye</br>Forewarned is forearmed</br>Corkscrew"],
 	},
 ];
+
+var gameState = {
+	greenConcept: null,
+	greenDetails: [],
+	redConcept: null,
+	redDetails: [],
+	blueConcept: null,
+	blueDetails: [],
+	blackConcept: null,
+	blackDetails: [],
+	yellowConcept: null,
+	yellowDetails: [],
+}
+const GREEN = 'rgb(0, 255, 0)';
+const OFFGREEN = 'rgb(0, 50, 0)';
+const RED = 'rgb(255, 0, 0)';
+const OFFRED = 'rgb(50, 0, 0)';
+const BLUE = 'rgb(0, 0, 255)';
+const OFFBLUE = 'rgb(0, 50, 0)';
+const BLACK = 'black';
+const OFFBLACK = 'rgb(100, 100, 100)';
+const YELLOW = 'rgb(255, 255, 0)';
+const OFFYELLOW = 'rgb(50, 50, 0)';
+
+var alreadyDrawn = [];
+var currentSelectedColor = 'green'
+
+document.getElementById("buttonDraw").addEventListener('click', draw);
+document.getElementById("buttonTakeover").addEventListener('click', takeOver);
+document.getElementById("buttonReset").addEventListener('click', resetGameState);
+
+document.getElementById('buttonGreenConcept').addEventListener('click', function() { selectColor(GREEN); });
+document.getElementById('buttonRedConcept').addEventListener('click', function() { selectColor(RED); });
+document.getElementById('buttonBlueConcept').addEventListener('click', function() { selectColor(BLUE); });
+document.getElementById('buttonBlackConcept').addEventListener('click', function() { selectColor(BLACK); });
+document.getElementById('buttonYellowConcept').addEventListener('click', function() { selectColor(YELLOW); });
+
+
+var conceptImages = document.getElementsByClassName('conceptImage');
+for (conceptImage of conceptImages) {
+	conceptImage.addEventListener('click', function(e) { 
+		conceptImageClick(e.target.parentNode.id); 
+	});
+}
+var addButtons = document.getElementsByClassName('addButton');
+for (addButton of addButtons) {
+	addButton.addEventListener('click', function(e) { 
+		addButtonClick(e.target.parentNode.parentNode.id); 
+	});
+}
+var minusButtons = document.getElementsByClassName('minusButton');
+for (minusButton of minusButtons) {
+	minusButton.addEventListener('click', function(e) { 
+		minusButtonClick(e.target.parentNode.parentNode.id); 
+	});
+}
+
+function drawGameStatePlayer() {
+	console.log(`drawGameStatePlayer ${JSON.stringify(gameState)}`);
+	const concepts = document.getElementsByClassName('concept');
+	for (concept of concepts) {
+		concept.style.backgroundColor = null;
+		concept.getElementsByClassName('detailCount')[0].innerHTML = '';
+	}
+	var greenConcept = document.getElementById(gameState.greenConcept);
+	if (greenConcept != null) { greenConcept.style.backgroundColor = OFFGREEN; }
+	for (detail of gameState.greenDetails) {
+		var detailObj = document.getElementById(detail);
+		if (detailObj != null) { 
+			detailObj.getElementsByClassName('detailCount')[0].innerHTML += `<span style="color: ${GREEN}">|</span>`;
+		}
+	}
+	var redConcept = document.getElementById(gameState.redConcept);
+	if (redConcept != null) { redConcept.style.backgroundColor = OFFRED; }
+	for (detail of gameState.redDetails) {
+		var detailObj = document.getElementById(detail);
+		if (detailObj != null) { 
+			detailObj.getElementsByClassName('detailCount')[0].innerHTML += `<span style="color: ${RED}">|</span>`;
+		}
+	}
+	var blueConcept = document.getElementById(gameState.blueConcept);
+	if (blueConcept != null) { blueConcept.style.backgroundColor = OFFBLUE; }
+	for (detail of gameState.blueDetails) {
+		var detailObj = document.getElementById(detail);
+		if (detailObj != null) { 
+			detailObj.getElementsByClassName('detailCount')[0].innerHTML += `<span style="color: ${BLUE}">|</span>`;
+		}
+	}
+	var blackConcept = document.getElementById(gameState.blackConcept);
+	if (blackConcept != null) { blackConcept.style.backgroundColor = OFFBLACK; }
+	for (detail of gameState.blackDetails) {
+		var detailObj = document.getElementById(detail);
+		if (detailObj != null) { 
+			detailObj.getElementsByClassName('detailCount')[0].innerHTML += `<span style="color: ${BLACK}">|</span>`;
+		}
+	}
+	var yellowConcept = document.getElementById(gameState.yellowConcept);
+	if (yellowConcept != null) { yellowConcept.style.backgroundColor = OFFYELLOW; }
+	for (detail of gameState.yellowDetails) {
+		var detailObj = document.getElementById(detail);
+		if (detailObj != null) { 
+			detailObj.getElementsByClassName('detailCount')[0].innerHTML += `<span style="color: ${YELLOW}">|</span>`;
+		}
+	}
+}
+
+function draw()
+{
+	if (alreadyDrawn.length == cards.length) {
+		alreadyDrawn = [];
+	}
+	var random = Math.floor(Math.random() * cards.length);
+	while (alreadyDrawn.includes(random)) {
+		random = Math.floor(Math.random() * cards.length);
+	}
+	renderCard(cards[random]);
+	alreadyDrawn.push(random);
+}
+
+function renderCard(card)
+{
+	// document.getElementById("card").setAttribute('style','text-align:center;');
+	document.getElementById("card").innerHTML = 
+			`<hr><b style="color:blue">Easy</b></br><hr>${card.easy}</br><hr>` +
+			`<b style="color:red">Medium</b></br><hr>${card.medium}</br><hr>` +
+			`<b style="color:black">Hard</b></br><hr>${card.hard}</br></br>`;
+}
+
+function resetGameState() {
+	console.log('reset');
+	gameState = {
+		greenConcept: null,
+		greenDetails: [],
+		redConcept: null,
+		redDetails: [],
+		blueConcept: null,
+		blueDetails: [],
+		blackConcept: null,
+		blackDetails: [],
+		yellowConcept: null,
+		yellowDetails: [],
+	};
+	drawGameStatePlayer();
+}
+
+function takeOver() {
+	console.log('takeover');
+	document.getElementById('activePlayerArea').style.display = "block";
+}
+
+function selectColor(color) {
+	console.log(`selectColor ${color}`);
+	currentSelectedColor = color;
+}
+
+function conceptImageClick(parentName) {
+	console.log(`Set ${parentName} background to ${currentSelectedColor}`);
+	switch (currentSelectedColor) {
+		case GREEN:
+			gameState.greenConcept = parentName;
+			break;
+		case RED:
+			gameState.redConcept = parentName;
+			break;
+		case BLUE:
+			gameState.blueConcept = parentName;
+			break;
+		case BLACK:
+			gameState.blackConcept = parentName;
+			break;
+		case YELLOW:
+			gameState.yellowConcept = parentName;
+			break;
+	}
+	drawGameStatePlayer();
+}
+
+function addButtonClick(parentName) {
+	console.log(`addButtonClick ${parentName}`);
+	switch (currentSelectedColor) {
+		case GREEN:
+			if (gameState.greenDetails.length < 10) {
+				gameState.greenDetails.push(parentName);
+			}
+			break;
+		case RED:
+			if (gameState.redDetails.length < 10) {
+				gameState.redDetails.push(parentName);
+			}
+			break;
+		case BLUE:
+			if (gameState.blueDetails.length < 10) {
+				gameState.blueDetails.push(parentName);
+			}
+			break;
+		case BLACK:
+			if (gameState.blackDetails.length < 10) {
+				gameState.blackDetails.push(parentName);
+			}
+			break;
+		case YELLOW:
+			if (gameState.yellowDetails.length < 10) {
+				gameState.yellowDetails.push(parentName);
+			}
+			break;
+	}
+	drawGameStatePlayer();
+}
+
+function minusButtonClick(parentName) {
+	console.log(`minusButtonClick ${parentName}`);
+	switch (currentSelectedColor) {
+		case GREEN:
+			remove(gameState.greenDetails, parentName);
+			break;
+		case RED:
+			remove(gameState.redDetails, parentName);
+			break;
+		case BLUE:
+			remove(gameState.blueDetails, parentName);
+			break;
+		case BLACK:
+			remove(gameState.blackDetails, parentName);
+			break;
+		case YELLOW:
+			remove(gameState.yellowDetails, parentName);
+			break;
+	}
+	drawGameStatePlayer();
+}
+
+function remove(array, item) {
+	var index = array.indexOf(item);
+	if (index !== -1) {
+		array.splice(index, 1);
+	}
+}

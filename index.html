@@ -5,14 +5,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link href="main.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
     <div id="title">Concept Cards</div>
     <div id="drawButton">
-        <a href="javascript:void(0)" class="btn" onclick="draw()">Draw a new card</a>
+        <a id="buttonDraw" href="javascript:void(0)" style="color: rgb(0, 56, 33);" class="btn" onclick="draw()">Draw a new card</a>
     </div>
     <div id="cardArea">
         <div id="card" style="text-align:center; font-family:Montserrat,Arial;" >
@@ -22,5 +21,1123 @@
         </div>
         <div style="clear: both;"></div>
     </div>
+    <div id="activePlayerButton">
+        <a id="buttonTakeover" href="javascript:void(0)" style="color: rgb(92, 0, 0);" class="btn">I'm the active player</a>
+    </div>
+    <div id="activePlayerArea" style="display: none;">
+        <div id="resetButton">
+            <a id="buttonReset" href="javascript:void(0)" style="color: rgb(255, 0, 0);" class="btn">Reset Board</a>
+        </div>
+
+        <div class="selection" id="pieceSelection">
+            <div class="selectionBlock" id="greenSelection">
+                <button class="button" id="buttonGreenConcept" style="background-color: green;">Concept</button>
+                <button class="button" id="buttonGreenClear" style="background-color: green;">Clear</button>
+            </div>
+            <div class="selectionBlock" id="redSelection">
+                <button class="button" id="buttonRedConcept" style="background-color: red;">Concept</button>
+                <button class="button" id="buttonRedClear" style="background-color: red;">Clear</button>
+            </div>
+            <div class="selectionBlock" id="blueSelection">
+                <button class="button" id="buttonBlueConcept" style="background-color: blue;">Concept</button>
+                <button class="button" id="buttonBlueClear" style="background-color: blue;">Clear</button>
+            </div>
+            <div class="selectionBlock" id="blackSelection">
+                <button class="button" id="buttonBlackConcept" style="background-color: black;">Concept</button>
+                <button class="button" id="buttonBlackClear" style="background-color: black;">Clear</button>
+            </div>
+            <div class="selectionBlock" id="yellowSelection">
+                <button class="button" id="buttonYellowConcept" style="background-color: rgb(150, 150, 1);">Concept</button>
+                <button class="button" id="buttonYellowClear" style="background-color: rgb(150, 150, 1);">Clear</button>
+            </div>
+        </div>
+        <div id="board" style="text-align:center;">
+            <div class="conceptColumn" id="conceptsFirst">
+                <div class="concept" id="conceptPackage">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/package.png" alt="" onclick="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptFemale">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/female.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptProfession">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/profession.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptAnimal">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/animal.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptLiterature">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/literature.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptFilm">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/film.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptTelevision">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/television.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptIdea">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/idea.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptGeography">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/geography.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptDate">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/date.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptBoat">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/boat.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptVehicle">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/vehicle.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptToys">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/toys.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptFood">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/food.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsSecond">
+                <div class="concept" id="conceptFamily">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/family.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptMale">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/male.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptLeisure">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/leisure.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptNature">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/nature.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptMusic">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/music.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptArt">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/art.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptWord">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/word.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSpoken">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/spoken.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCity">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/city.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptHoliday">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/holiday.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPlane">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/plane.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptTool">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/tool.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptClothing">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/clothing.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptHouse">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/house.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsThird">
+                <div class="concept" id="conceptHistory">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/history.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptBaby">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/baby.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSlow">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/slow.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptDefense">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/defense.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptHeart">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/heart.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptHappy">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/happy.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCircuit">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/circuit.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptMoney">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/money.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPray">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/pray.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptScience">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/science.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptHead">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/head.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptTorso">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/torso.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptHear">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/hear.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptEye">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/eye.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsFourth">
+                <div class="concept" id="conceptSuperhero">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/superhero.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptOld">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/old.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptFast">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/fast.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptWeapon">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/weapon.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptDeath">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/death.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSad">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/sad.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptMechanical">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/mechanical.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptTime">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/time.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPolitic">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/politic.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptMedicine">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/medicine.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptArm">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/arm.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptLeg">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/leg.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSmell">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/smell.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptLips">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/lips.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsFifth">
+                <div class="concept" id="conceptCold">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/cold.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptNight">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/night.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptFire">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/fire.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptWind">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/wind.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptStone">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/stone.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSteel">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/steel.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPlastic">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/plastic.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptReverse">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/reverse.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptMany">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/many.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptInside">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/inside.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptZero">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/zero.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsSixth">
+                <div class="concept" id="conceptHot">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/hot.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptStorm">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/storm.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptWater">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/water.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptEarth">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/earth.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptWood">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/wood.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptTowel">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/towel.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPaper">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/paper.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCut">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/cut.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPuzzle">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/puzzle.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptGrid">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/grid.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptOne">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/one.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsSeventh">
+                <div class="concept" id="conceptLine">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/line.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPlus">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/plus.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSwirl">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/swirl.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptOutline">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/outline.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptTriangle">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/triangle.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptRectangle">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/rectangle.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCube">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/cube.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPyramid">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/pyramid.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCone">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/cone.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptLengthen">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/lengthen.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptWide">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/wide.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptUp">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/up.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptLeft">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/left.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptRotate">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/rotate.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsEigth">
+                <div class="concept" id="conceptArc">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/arc.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptZigzag">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/zigzag.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCurvy">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/curvy.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCircle">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/circle.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptStar">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/star.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptFlat">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/flat.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSphere">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/sphere.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptCylinder">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/cylinder.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptHollow">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/hollow.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptShorten">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/shorten.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptSqueeze">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/squeeze.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptDown">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/down.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptRight">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/right.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptButton">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/button.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="conceptColumn" id="conceptsNinth">
+                <div class="concept" id="conceptRed">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/red.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptYellow">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/yellow.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptBlue">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/blue.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptOrange">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/orange.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptGreen">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/green.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPurple">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/purple.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptPink">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/pink.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptBlack">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/black.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptWhite">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/white.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptBrown">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/brown.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptGrey">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/grey.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+                <div class="concept" id="conceptClear">
+                    <div class="conceptMarker" tag="marker"></div>
+                    <img class="conceptImage" src="images/clear.png" alt="">
+                    <div class="details" tag="details">
+                        <button class="addButton" tag="add">+</button></br>
+                        <p class="detailCount" tag="count"></p></br>
+                        <button class="minusButton" tag="minus">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="guesserArea">
+
+    </div>
+    
+    <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
