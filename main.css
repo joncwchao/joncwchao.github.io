@@ -90,11 +90,11 @@
     color:#efefef;
     margin:auto;
     margin-top:20px;
-    background-color:#15ff00;
+    background-color:#4c9945;
     border-radius:5px;
     font-family:Montserrat,Arial;
 }
-#activePlayerButton{
+#takeoverButton{
     width:200px;
     text-align:center;
     font-size:20px;
@@ -103,7 +103,7 @@
     color:#efefef;
     margin:auto;
     margin-top:20px;
-    background-color:#994638;    
+    background-color:#b95d4d;    
     border-radius:5px;
     font-family:Montserrat,Arial;
 }

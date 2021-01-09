@@ -367,7 +367,7 @@ const OFFGREEN = 'rgb(0, 50, 0)';
 const RED = 'rgb(255, 0, 0)';
 const OFFRED = 'rgb(50, 0, 0)';
 const BLUE = 'rgb(0, 0, 255)';
-const OFFBLUE = 'rgb(0, 50, 0)';
+const OFFBLUE = 'rgb(0, 0, 50)';
 const BLACK = 'black';
 const OFFBLACK = 'rgb(100, 100, 100)';
 const YELLOW = 'rgb(255, 255, 0)';
@@ -376,16 +376,20 @@ const OFFYELLOW = 'rgb(50, 50, 0)';
 var alreadyDrawn = [];
 var currentSelectedColor = 'green'
 
-document.getElementById("buttonDraw").addEventListener('click', draw);
-document.getElementById("buttonTakeover").addEventListener('click', takeOver);
-document.getElementById("buttonReset").addEventListener('click', resetGameState);
+document.getElementById("drawButton").addEventListener('click', draw);
+document.getElementById("takeoverButton").addEventListener('click', takeOver);
+document.getElementById("resetButton").addEventListener('click', resetGameState);
 
 document.getElementById('buttonGreenConcept').addEventListener('click', function() { selectColor(GREEN); });
 document.getElementById('buttonRedConcept').addEventListener('click', function() { selectColor(RED); });
 document.getElementById('buttonBlueConcept').addEventListener('click', function() { selectColor(BLUE); });
 document.getElementById('buttonBlackConcept').addEventListener('click', function() { selectColor(BLACK); });
 document.getElementById('buttonYellowConcept').addEventListener('click', function() { selectColor(YELLOW); });
-
+document.getElementById('buttonGreenClear').addEventListener('click', function() { clearColor(GREEN); });
+document.getElementById('buttonRedClear').addEventListener('click', function() { clearColor(RED); });
+document.getElementById('buttonBlueClear').addEventListener('click', function() { clearColor(BLUE); });
+document.getElementById('buttonBlackClear').addEventListener('click', function() { clearColor(BLACK); });
+document.getElementById('buttonYellowClear').addEventListener('click', function() { clearColor(YELLOW); });
 
 var conceptImages = document.getElementsByClassName('conceptImage');
 for (conceptImage of conceptImages) {
@@ -504,23 +508,59 @@ function selectColor(color) {
 	currentSelectedColor = color;
 }
 
+function clearColor(color) {
+	switch (color) {
+		case GREEN:
+			gameState.greenConcept = null;
+			gameState.greenDetails = [];
+			break;
+		case RED:
+			gameState.redConcept = null;
+			gameState.redDetails = [];
+			break;
+		case BLUE:
+			gameState.blueConcept = null;
+			gameState.blueDetails = [];
+			break;
+		case BLACK:
+			gameState.blackConcept = null;
+			gameState.blackDetails = [];
+			break;
+		case YELLOW:
+			gameState.yellowConcept = null;
+			gameState.yellowDetails = [];
+			break;
+	}
+	drawGameStatePlayer();
+}
+
 function conceptImageClick(parentName) {
 	console.log(`Set ${parentName} background to ${currentSelectedColor}`);
 	switch (currentSelectedColor) {
 		case GREEN:
-			gameState.greenConcept = parentName;
+			gameState.greenConcept == parentName
+				? gameState.greenConcept = null
+				: gameState.greenConcept = parentName;
 			break;
 		case RED:
-			gameState.redConcept = parentName;
+			gameState.redConcept == parentName
+				? gameState.redConcept = null
+				: gameState.redConcept = parentName;
 			break;
 		case BLUE:
-			gameState.blueConcept = parentName;
+			gameState.blueConcept == parentName
+				? gameState.blueConcept = null
+				: gameState.blueConcept = parentName;
 			break;
 		case BLACK:
-			gameState.blackConcept = parentName;
+			gameState.blackConcept == parentName
+				? gameState.blackConcept = null
+				: gameState.blackConcept = parentName;
 			break;
 		case YELLOW:
-			gameState.yellowConcept = parentName;
+			gameState.yellowConcept == parentName
+				? gameState.yellowConcept = null
+				: gameState.yellowConcept = parentName;
 			break;
 	}
 	drawGameStatePlayer();
