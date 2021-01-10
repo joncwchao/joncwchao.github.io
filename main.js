@@ -368,8 +368,8 @@ const OFFYELLOW = 'rgb(50, 50, 0)';
 
 var cards = null;
 
-fetch("cards.json").then(response => response.json()).then(json => {
-	cards = JSON.parse(json);
+fetch("cards.json").then(response => response.json()).then(cardsFromJson => {
+	cards = cardsFromJson;
 });
 // cards = JSON.parse(cardsJson);
 
